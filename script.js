@@ -2,12 +2,12 @@
 const TILE_COLORS = ['#E3C9C0','#B8C2AE','#EDE7DC','#D8CFC3','#C7CFC0','#EAD9D0','#E3C9C0','#B8C2AE','#EDE7DC'];
 
 const PORTFOLIO = [
-  { titulo: 'Estúdio Flora', desc: 'Identidade botânica e feed editorial, com aumento de engajamento em 60 dias.' },
-  { titulo: 'Café Bonifácio', desc: 'Direção de arte para reels e cardápio visual, com mais alcance orgânico.' },
-  { titulo: 'Marina Bijoux', desc: 'Templates de carrossel e copy, transformando feed em vitrine de vendas.' },
-  { titulo: 'Verbo Studio', desc: 'Rebranding completo e lançamento de conteúdo em poucos meses.' },
-  { titulo: 'Casa Tameira', desc: 'Tratamento visual de produto para e-commerce e redes sociais.' },
-  { titulo: 'Nômade Co.', desc: 'Estratégia de stories e roteiro de reels para marca de viagem.' }
+  { titulo: 'Projeto Lua', desc: 'Gestão completa de perfil (@lua.prateadaabr): conteúdo visual, legendas e agendamento. Resultado: aumento de vendas e seguidores.' },
+  { titulo: 'Projeto Bythalu', desc: 'Gestão completa de perfil (@bythalu_): conteúdo visual, legendas e agendamento. Resultado: mais vendas e interações.' },
+  { titulo: 'Projeto Tavares', desc: 'Gestão completa de perfil (@tavaresinformaticaa): conteúdo visual, legendas e agendamento. Resultado: captação de clientes.' },
+  { titulo: 'Luciana Santana — Estética Facial', desc: 'Site personalizado para agendamento de procedimentos estéticos.' },
+  { titulo: 'Bianca Tavares — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais.' },
+  { titulo: 'Lais Silva — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais.' }
 ];
 
 // ===================== NAV MOBILE =====================
