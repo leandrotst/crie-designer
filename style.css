@@ -77,8 +77,11 @@ a{ color: inherit; text-decoration:none; }
 /* ===== HERO ===== */
 .hero{
   padding: 90px 6vw 80px;
-  display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items:center;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
 }
+.hero__text{ max-width: 700px; }
+.hero__sub{ margin-left:auto; margin-right:auto; }
+.hero__actions{ justify-content:center; }
 .hero__eyebrow{
   font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--dusty-rose); margin: 0 0 22px;
@@ -106,26 +109,6 @@ a{ color: inherit; text-decoration:none; }
 .btn--ghost{ background: transparent; color: var(--terracotta); border-color: var(--blush); }
 .btn--ghost:hover{ background: rgba(227,201,192,0.22); color: var(--ink); }
 .btn--block{ width:100%; justify-content:center; }
-
-/* signature visual: cartão de perfil minimalista */
-.hero__visual{ display:flex; justify-content:center; }
-.frame{
-  width: 320px; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 26px; box-shadow: 0 24px 60px -30px rgba(46,43,39,0.18);
-}
-.frame__bar{ display:flex; align-items:center; gap: 10px; margin-bottom: 20px; }
-.frame__dot{ width: 30px; height:30px; border-radius:50%; background: linear-gradient(135deg, var(--sage), var(--blush)); }
-.frame__handle{ font-size: 0.85rem; color: var(--ink-soft); }
-.frame__metrics{
-  display:flex; justify-content: space-between; text-align:left;
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  padding: 14px 0; margin-bottom: 18px;
-}
-.frame__metrics div{ display:flex; flex-direction:column; gap: 2px; }
-.frame__metrics strong{ font-family: var(--font-display); font-size: 1.15rem; font-weight: 500; color: var(--dusty-rose); }
-.frame__metrics span{ font-size: 0.65rem; color: var(--ink-soft); text-transform:uppercase; letter-spacing:0.06em; }
-.frame__grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 6px; }
-.frame__grid .tile{ aspect-ratio: 1; border-radius: 6px; transition: opacity .5s ease; }
 
 /* ===== SECTION GENERICS ===== */
 section{ padding: 90px 6vw; }
@@ -314,8 +297,6 @@ section{ padding: 90px 6vw; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 980px){
-  .hero{ grid-template-columns: 1fr; padding-top: 60px; }
-  .hero__visual{ order:-1; margin-bottom: 10px; }
   .cards{ grid-template-columns: repeat(2,1fr); }
   .steps{ grid-template-columns: repeat(2,1fr); }
   .port-grid{ grid-template-columns: repeat(2,1fr); }

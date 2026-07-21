@@ -1,5 +1,4 @@
 // ===================== DADOS =====================
-const TILE_COLORS = ['#E3C9C0','#B8C2AE','#EDE7DC','#D8CFC3','#C7CFC0','#EAD9D0','#E3C9C0','#B8C2AE','#EDE7DC'];
 
 const PORTFOLIO = [
   { titulo: 'Janaina SPA', desc: 'Site personalizado para um espaço de autocuidado com identidade acolhedora e elegante, voltado para SPA, pés e depilação. Explore o projeto completo: <a href="https://retroviic.my.canva.site/janainaferreira" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/janaina_site.jpg' },
@@ -28,62 +27,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 revealTargets.forEach(el => revealObserver.observe(el));
-
-// ===================== CARTÃO DE PERFIL (elemento de assinatura) =====================
-const igGrid = document.getElementById('igGrid');
-const igHandle = document.getElementById('igHandle');
-const metricFollowers = document.getElementById('metricFollowers');
-const metricEngage = document.getElementById('metricEngage');
-
-function buildGrid(colors) {
-  igGrid.innerHTML = '';
-  colors.forEach(c => {
-    const tile = document.createElement('div');
-    tile.className = 'tile';
-    tile.style.background = c;
-    igGrid.appendChild(tile);
-  });
-}
-buildGrid(TILE_COLORS);
-
-function animateMetric(el, target, formatter) {
-  const duration = 1700;
-  const startTime = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    const value = Math.floor(target * eased);
-    el.textContent = formatter ? formatter(value) : value.toLocaleString('pt-BR');
-    if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = formatter ? formatter(target) : target.toLocaleString('pt-BR');
-  }
-  requestAnimationFrame(tick);
-}
-
-const phoneObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateMetric(metricFollowers, 24800);
-      animateMetric(metricEngage, 7, (v) => v + '%');
-      phoneObserver.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-const frameEl = document.querySelector('.frame');
-if (frameEl) phoneObserver.observe(frameEl);
-
-// troca discreta do handle, a cada bom tempo — sensação de feed vivo, sem agitação
-const handles = ['@marca.viva', '@estudio.flora', '@cafe.bonifacio', '@marina.bijoux'];
-let handleIdx = 0;
-setInterval(() => {
-  handleIdx = (handleIdx + 1) % handles.length;
-  igHandle.style.opacity = 0;
-  setTimeout(() => {
-    igHandle.textContent = handles[handleIdx];
-    igHandle.style.opacity = 1;
-  }, 300);
-}, 5000);
-igHandle.style.transition = 'opacity .3s ease';
 
 // ===================== PORTFÓLIO (gerado via JS) =====================
 const portGrid = document.getElementById('portGrid');
