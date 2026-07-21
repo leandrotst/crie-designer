@@ -87,6 +87,19 @@ igHandle.style.transition = 'opacity .3s ease';
 
 // ===================== PORTFÓLIO (gerado via JS) =====================
 const portGrid = document.getElementById('portGrid');
+const portPrev = document.getElementById('portPrev');
+const portNext = document.getElementById('portNext');
+
+const getPortScrollAmount = () => Math.max(portGrid.clientWidth * 0.9, 280);
+
+portPrev?.addEventListener('click', () => {
+  portGrid.scrollBy({ left: -getPortScrollAmount(), behavior: 'smooth' });
+});
+
+portNext?.addEventListener('click', () => {
+  portGrid.scrollBy({ left: getPortScrollAmount(), behavior: 'smooth' });
+});
+
 PORTFOLIO.forEach(item => {
   const el = document.createElement('div');
   el.className = 'port-item';

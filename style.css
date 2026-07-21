@@ -153,12 +153,43 @@ section{ padding: 90px 6vw; }
 .card p{ font-size: 0.92rem; line-height:1.65; color: var(--ink-soft); margin:0; }
 
 /* ===== PORTFÓLIO ===== */
-.port-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.port-controls{
+  display:flex; justify-content:flex-end; gap: 10px; margin-bottom: 18px;
+}
+.port-arrow{
+  width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line);
+  background: rgba(255,255,255,0.9); color: var(--ink);
+  cursor:pointer; display:grid; place-items:center; transition: border-color .2s ease, transform .2s ease;
+}
+.port-arrow:hover{ border-color: var(--ink); transform: translateY(-1px); }
+.port-grid{
+  display:flex;
+  align-items:stretch;
+  gap: 22px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  padding: 2px 12px 12px 2px;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+.port-grid::-webkit-scrollbar{ display:none; }
+.port-grid:active{ cursor: grabbing; }
 .port-item{
-  position:relative; aspect-ratio: 4/5; border-radius: var(--radius); overflow:hidden;
+  position:relative; flex: 0 0 min(30vw, 320px); width: min(30vw, 320px);
+  aspect-ratio: 4/5; border-radius: var(--radius); overflow:hidden;
   cursor:pointer; background: var(--bg-soft);
   border: 1px solid rgba(213,177,166,0.35);
   display:flex; align-items:center; justify-content:center;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 680px){
+  .port-controls{ margin-bottom: 14px; }
+  .port-grid{ gap: 16px; padding: 2px 2px 12px; }
+  .port-item{ flex-basis: min(86vw, 320px); width: min(86vw, 320px); }
 }
 .port-item__media{
   position:absolute; inset:0; opacity:1; visibility:visible;
@@ -302,6 +333,20 @@ section{ padding: 90px 6vw; }
   .nav__burger{ display:flex; }
   .cards{ grid-template-columns: 1fr; }
   .steps{ grid-template-columns: 1fr; }
-  .port-grid{ grid-template-columns: 1fr; }
+  .port-grid{
+    display:grid;
+    grid-auto-flow: column;
+    grid-auto-columns: min(84vw, 320px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+  .port-grid::-webkit-scrollbar{ display:none; }
+  .port-item{
+    min-width: 0;
+    scroll-snap-align: start;
+  }
   .numeros{ gap: 36px; }
 }
