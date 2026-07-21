@@ -2,11 +2,11 @@
 const TILE_COLORS = ['#E3C9C0','#B8C2AE','#EDE7DC','#D8CFC3','#C7CFC0','#EAD9D0','#E3C9C0','#B8C2AE','#EDE7DC'];
 
 const PORTFOLIO = [
-  { titulo: 'Projeto Tavares', desc: 'Gestão completa de perfil (@tavaresinformaticaa): conteúdo visual, legendas e agendamento. Resultado: captação de clientes.', imagem: 'assets/imagens/tavares_feed.jpg' },
+  { titulo: 'Janaina SPA', desc: 'Site personalizado para um espaço de autocuidado com identidade acolhedora e elegante, voltado para SPA, pés e depilação. Explore o projeto completo: <a href="https://retroviic.my.canva.site/janainaferreira" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/janaina_site.jpg' },
   { titulo: 'Luciana Santana — Estética Facial', desc: 'Site personalizado para agendamento de procedimentos estéticos, com visual elegante e experiência pensada para converter. Explore o projeto completo: <a href="https://lucianaesteticafacial.my.canva.site/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGno3MG1HcpPgUyA3byDDYObIifsZZrXjNntT020ySAnFrEHbR0MEr0OecxxIE_aem_Df37m3Xn_7wJ7O6LrAGZLw" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/luciana_site.jpg' },
   { titulo: 'Bianca Tavares — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais. Explore o projeto completo: <a href="https://nutribiancatavares.my.canva.site/" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/bianca_site.png' },
   { titulo: 'Milena Cafer', desc: 'Site personalizado para agendamento de consultas nutricionais. Explore o projeto completo: <a href="https://milenacarneironutri.my.canva.site/c-pia-de-c-pia-de-milena-cafer" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/milena_site.png' },
-  { titulo: 'Janaina SPA', desc: 'Site personalizado para um espaço de autocuidado com identidade acolhedora e elegante, voltado para SPA, pés e depilação. Explore o projeto completo: <a href="https://retroviic.my.canva.site/janainaferreira" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/janaina_site.jpg' }
+  { titulo: 'Projeto Tavares', desc: 'Gestão completa de perfil (@tavaresinformaticaa): conteúdo visual, legendas e agendamento. Resultado: captação de clientes.', imagem: 'assets/imagens/tavares_feed.jpg' }
 ];
 
 // ===================== NAV MOBILE =====================
@@ -28,33 +28,6 @@ const revealObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 revealTargets.forEach(el => revealObserver.observe(el));
-
-// ===================== CONTADORES (números) =====================
-function animateCount(el, target, duration = 1500) {
-  const startTime = performance.now();
-  function tick(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.floor(target * eased);
-    if (progress < 1) requestAnimationFrame(tick);
-    else el.textContent = target;
-  }
-  requestAnimationFrame(tick);
-}
-
-const statsRow = document.getElementById('statsRow');
-let statsAnimated = false;
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !statsAnimated) {
-      statsAnimated = true;
-      document.querySelectorAll('.numero__num').forEach(num => {
-        animateCount(num, parseInt(num.dataset.count, 10));
-      });
-    }
-  });
-}, { threshold: 0.4 });
-if (statsRow) statsObserver.observe(statsRow);
 
 // ===================== CARTÃO DE PERFIL (elemento de assinatura) =====================
 const igGrid = document.getElementById('igGrid');
