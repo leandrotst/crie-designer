@@ -2,12 +2,11 @@
 const TILE_COLORS = ['#E3C9C0','#B8C2AE','#EDE7DC','#D8CFC3','#C7CFC0','#EAD9D0','#E3C9C0','#B8C2AE','#EDE7DC'];
 
 const PORTFOLIO = [
-  { titulo: 'Projeto Lua', desc: 'Gestão completa de perfil (@lua.prateadaabr): conteúdo visual, legendas e agendamento. Resultado: aumento de vendas e seguidores.' },
-  { titulo: 'Projeto Bythalu', desc: 'Gestão completa de perfil (@bythalu_): conteúdo visual, legendas e agendamento. Resultado: mais vendas e interações.' },
-  { titulo: 'Projeto Tavares', desc: 'Gestão completa de perfil (@tavaresinformaticaa): conteúdo visual, legendas e agendamento. Resultado: captação de clientes.' },
-  { titulo: 'Luciana Santana — Estética Facial', desc: 'Site personalizado para agendamento de procedimentos estéticos.' },
-  { titulo: 'Bianca Tavares — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais.' },
-  { titulo: 'Lais Silva — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais.' }
+  { titulo: 'Projeto Tavares', desc: 'Gestão completa de perfil (@tavaresinformaticaa): conteúdo visual, legendas e agendamento. Resultado: captação de clientes.', imagem: 'assets/imagens/tavares_feed.jpg' },
+  { titulo: 'Luciana Santana — Estética Facial', desc: 'Site personalizado para agendamento de procedimentos estéticos, com visual elegante e experiência pensada para converter. Explore o projeto completo: <a href="https://lucianaesteticafacial.my.canva.site/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQPOTM2NjE5NzQzMzkyNDU5AAGno3MG1HcpPgUyA3byDDYObIifsZZrXjNntT020ySAnFrEHbR0MEr0OecxxIE_aem_Df37m3Xn_7wJ7O6LrAGZLw" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/luciana_site.jpg' },
+  { titulo: 'Bianca Tavares — Nutricionista', desc: 'Site personalizado para agendamento de consultas nutricionais. Explore o projeto completo: <a href="https://nutribiancatavares.my.canva.site/" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/bianca_site.png' },
+  { titulo: 'Milena Cafer', desc: 'Site personalizado para agendamento de consultas nutricionais. Explore o projeto completo: <a href="https://milenacarneironutri.my.canva.site/c-pia-de-c-pia-de-milena-cafer" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/milena_site.png' },
+  { titulo: 'Janaina SPA', desc: 'Site personalizado para um espaço de autocuidado com identidade acolhedora e elegante, voltado para SPA, pés e depilação. Explore o projeto completo: <a href="https://retroviic.my.canva.site/janainaferreira" target="_blank" rel="noopener noreferrer"><strong>clique para conferir aqui</strong></a>', imagem: 'assets/imagens/janaina_site.jpg' }
 ];
 
 // ===================== NAV MOBILE =====================
@@ -118,10 +117,24 @@ const portGrid = document.getElementById('portGrid');
 PORTFOLIO.forEach(item => {
   const el = document.createElement('div');
   el.className = 'port-item';
-  el.innerHTML = `
-    <div class="port-item__face port-item__face--front">${item.titulo}</div>
-    <div class="port-item__face port-item__face--back">${item.desc}</div>
-  `;
+
+  if (item.imagem) {
+    el.classList.add('port-item--image');
+    el.innerHTML = `
+      <div class="port-item__media"><img src="${item.imagem}" alt="${item.titulo}"></div>
+      <div class="port-item__face port-item__face--back">${item.desc}</div>
+    `;
+
+    el.addEventListener('click', () => {
+      el.classList.toggle('is-active');
+    });
+  } else {
+    el.innerHTML = `
+      <div class="port-item__face port-item__face--front">${item.titulo}</div>
+      <div class="port-item__face port-item__face--back">${item.desc}</div>
+    `;
+  }
+
   portGrid.appendChild(el);
 });
 
