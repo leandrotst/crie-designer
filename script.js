@@ -15,7 +15,7 @@ navBurger.addEventListener('click', () => navLinks.classList.toggle('open'));
 navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
 
 // ===================== SCROLL REVEAL =====================
-const revealTargets = document.querySelectorAll('.card, .step, .port-item, .numero');
+const revealTargets = document.querySelectorAll('.card, .step, .port-item, .numero, .pkg-card');
 revealTargets.forEach(el => el.classList.add('reveal'));
 
 const revealObserver = new IntersectionObserver((entries) => {
