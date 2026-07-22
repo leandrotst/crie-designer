@@ -43,6 +43,77 @@ portNext?.addEventListener('click', () => {
   portGrid.scrollBy({ left: getPortScrollAmount(), behavior: 'smooth' });
 });
 
+// ===================== CARROSSEIS DE PACOTES =====================
+const makeDraggableTrack = (track) => {
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let pointerId = null;
+
+  const stopDragging = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    track.classList.remove('dragging');
+    track.style.cursor = '';
+    track.style.userSelect = '';
+
+    if (pointerId !== null && track.hasPointerCapture(pointerId)) {
+      track.releasePointerCapture(pointerId);
+    }
+
+    pointerId = null;
+  };
+
+  track.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0) return;
+
+    isDragging = true;
+    pointerId = event.pointerId;
+    const rect = track.getBoundingClientRect();
+    startX = event.clientX - rect.left;
+    startScrollLeft = track.scrollLeft;
+
+    track.classList.add('dragging');
+    track.style.cursor = 'grabbing';
+    track.style.userSelect = 'none';
+    track.setPointerCapture(pointerId);
+    event.preventDefault();
+  });
+
+  track.addEventListener('pointermove', (event) => {
+    if (!isDragging || event.pointerId !== pointerId) return;
+
+    const rect = track.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const walk = (x - startX) * 1.05;
+    track.scrollLeft = startScrollLeft - walk;
+  });
+
+  track.addEventListener('pointerup', stopDragging);
+  track.addEventListener('pointercancel', stopDragging);
+  window.addEventListener('pointerup', stopDragging);
+};
+
+document.querySelectorAll('.pkg-carousel').forEach((carousel) => {
+  const track = carousel.querySelector('.pkg-track');
+  const buttons = carousel.querySelectorAll('.port-arrow');
+
+  if (!track || buttons.length === 0) return;
+
+  makeDraggableTrack(track);
+
+  const getScrollAmount = () => Math.max(track.clientWidth * 0.9, 280);
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const direction = button.dataset.dir === 'next' ? 1 : -1;
+      track.scrollBy({ left: direction * getScrollAmount(), behavior: 'smooth' });
+    });
+  });
+});
+
+makeDraggableTrack(document.getElementById('portGrid'));
+
 PORTFOLIO.forEach(item => {
   const el = document.createElement('div');
   el.className = 'port-item';
